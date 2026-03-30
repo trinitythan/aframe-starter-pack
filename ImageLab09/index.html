@@ -6,13 +6,27 @@
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box> -->
+      <a-sphere position="0 4.4 -5" radius="0.70" color="#white"></a-sphere>
+      <a-sphere position="0 3 -5" radius="0.9" color="#white"></a-sphere> <!-- middle sphere-->>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#white"></a-sphere> <!-- top sphere-->>
+      <!--Carrot Nose-->
+      <a-cone position="-0.1 4.382 -4" radius-bottom="0.25" radius-top="0.05" height="0.75" color="orange" rotation="-90 173 0"></a-cone>
+      <!-- eyes -->
+      <a-sphere position="0.391 4.5 -4.397" radius="0.1" color="black"></a-sphere>
+      <a-sphere position="-0.410 4.5 -4.397" radius="0.1" color="black"></a-sphere>
+      <!-- buttons -->
+      <a-sphere position="-0.016 1.421 -3.771" radius="0.2" color="brown"></a-sphere>
+      <a-sphere position="-0.027 3 -4.177" radius="0.2" color="brown"></a-sphere>
+
+
+      <!-- <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
       <a-plane position="0 0.1 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <!-- <a-sky color="#ECECEC"></a-sky> -->
+      
       <!-- the enviroment entity includes a sky. Choose from the presets"none, default, contact, egypt, checkerboard, forest, goaland, yavapai, goldmine, threetowers, poison, arches, tron, japan, dream, volcano, starry, osiris, moon" -->
-      <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
+      <a-entity environment="preset: yavapai; dressingAmount: 500"></a-entity>
+
+      <!-- ENVIORNMENT WEBSITE https://github.com/supermedium/aframe-environment-component -->
     </a-scene>
   </body>
 </html>
