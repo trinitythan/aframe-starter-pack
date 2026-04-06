@@ -4,12 +4,36 @@
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"> </script>
   </head>
   <body>
-    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+    <!-- To add a text - download as jpg or png  -->
+    <!-- add in code <a-assets> -->
+    <!-- want everything in a-scene as well -->
+    <!-- Make a assets folder and put all the images you use in it aim for medium size files -->
+    <!--  add in a image <img... src="...">-->
+      <a-scene>
+        <a-assets>
+          <img id="sandTexture" src="assets/sandTex.jpg">
+          <img id="skyTexture" src="assets/sky.jpg">
+          <img id="iceCream" src="assets/iceCream.jpg">
+        </a-assets>
+      <a-sphere position="0 1 -4" radius="1.25" src="#iceCream"></a-sphere>
+      <a-sphere position="0 0.3 -3" radius="0.4" src="#iceCream"></a-sphere>
+      <a-sphere position="0.81 0.3 -3.2" radius="0.5" src="#iceCream"></a-sphere>
+      <a-sphere position="-0.76 0.3 -3.2" radius="0.58" src="#iceCream"></a-sphere>
+      <a-sphere position="-0.76 0.3 -4.76" radius="0.6" src="#iceCream"></a-sphere>
+      <a-sphere position="1 0.3 -4.76" radius="0.5" src="#iceCream"></a-sphere>
+      <a-cone position="0 2.7 -4" radius-bottom="1" radius-top="0" height="3" color="#ffb43b"></a-cone>
+      
+      <a-plane position="1 0.4 -2.3" rotation="0 0 0" width="1" height="0.65" color="black"></a-plane>
+      <a-plane position="-0.35 0.4 -2.3" rotation="0 0 0" width="1" height="0.65" src="testing"></a-plane>
+      <a-plane position="0 0.4 -2.3" rotation="0 0 0" width="1" height="0.25" color="black"></a-plane>
+
+      <a-square position="2 2 2" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-square>
+
+      <a-plane src="#sandTexture"position="0 0 -4" rotation="-90 0 0" width="4" height="4"></a-plane>
+      
+      <!-- Sky Box -->
+      <!-- -->
+      <a-sky src="#skyTexture"></a-sky>
     </a-scene>
   </body>
 </html>
