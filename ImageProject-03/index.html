@@ -15,18 +15,21 @@
           this.isSpinning = true;
           let startRotation = this.el.getAttribute('rotation');
 
+          // Playing dancing osund
+          this.el.emit('doroSpin');
+
           // Actual spinning of the doro
           this.el.setAttribute('animation', {
             property: 'rotation',
             to: `90 ${startRotation.y + 360} 0`,
-            dur: 3000,
+            dur: 2000,
             easing: 'linear'
           });
 
           // Stops the player from spinning the doro until after the animation completes
           setTimeout(() => {
             this.isSpinning = false;
-          }, 3000);
+          }, 2000);
         });
       }
     });
@@ -47,6 +50,9 @@
       <!-- Doro Asset -->
       <a-asset-item id="doro" src="assets/doro/doro.obj"></a-asset-item>
       <a-asset-item id="doro-mtl" src="assets/doro/doro.mtl"></a-asset-item>
+
+      <!-- Doro Sound -->
+      <audio id="slowOoEeAh" src="assets/dancingSounds/slow OO EE AH.mp3" volume="10"></audio>
 
       <!-- Cat Asset -->
       <a-asset-item id="cat" src="assets/cat/oiiaioooooiai_cat.obj"></a-asset-item>
@@ -80,9 +86,9 @@
       <a-obj-model src="#pedestal" mtl="#pedestal-mtl" position="0.447 0.970 -4.323" scale="0.015 0.015 0.013" rotation="-90 0 0" color="gray"></a-obj-model>
       
       <!-- Doro Models -->
-      <a-obj-model src="#doro" mtl="#doro-mtl" position="-3.769 0.003 -4.850" scale="1.5 1.5 1.5" rotation="90 65 0" doro-spin></a-obj-model>
-      <a-obj-model src="#doro" mtl="#doro-mtl" position="0 0.003 -8.843" scale="1.5 1.5 1.5" rotation="90 0 0" doro-spin></a-obj-model>
-      <a-obj-model src="#doro" mtl="#doro-mtl" position="3.769 0.003 -4.850" scale="1.5 1.5 1.5" rotation="90 -65 0" doro-spin></a-obj-model>
+      <a-obj-model src="#doro" mtl="#doro-mtl" position="-3.769 0.003 -4.850" scale="1.5 1.5 1.5" rotation="90 65 0" doro-spin sound="src: #slowOoEeAh; on: doroSpin"></a-obj-model>
+      <a-obj-model src="#doro" mtl="#doro-mtl" position="0 0.003 -8.843" scale="1.5 1.5 1.5" rotation="90 0 0" doro-spin sound="src: #slowOoEeAh; on: doroSpin"></a-obj-model>
+      <a-obj-model src="#doro" mtl="#doro-mtl" position="3.769 0.003 -4.850" scale="1.5 1.5 1.5" rotation="90 -65 0" doro-spin sound="src: #slowOoEeAh; on: doroSpin"></a-obj-model>
       
       <!-- Cat Model -->
       <a-obj-model src="#cat" mtl="#cat-mtl" position="0 1.056 -4.624" scale="4.75 4.75 4.75" rotation="0 20 0"
