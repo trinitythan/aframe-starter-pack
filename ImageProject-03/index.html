@@ -9,18 +9,25 @@
       <img id="pinkSky" src="assets/pinkSky.jpg"> 
       
       <!-- Pedestal Assets -->
-      <img id="pedestalText" src="assets/pedestal.png">     
-      <a-asset-item id="pedestal" src="assets/pedestal.obj"></a-asset-item>
-      
+      <a-asset-item id="pedestal" src="assets/pedestal/pedestal.obj"></a-asset-item>
+      <a-asset-item id="pedestal-mtl" src="assets/pedestal/model.mtl"></a-asset-item>
+
       <!-- Stone Floor -->
       <img id="stoneFloor" src="assets/stoneFloor.png">
+
+      <!-- Doro Asset -->
+      <a-asset-item id="doro" src="assets/doro/doro.obj"></a-asset-item>
+      <a-asset-item id="doro-mtl" src="assets/doro/doro.mtl"></a-asset-item>
     </a-assets>
 
     <a-scene>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" src="#stoneFloor"></a-plane>
       <a-sky src="#pinkSky"></a-sky>
 
-      <a-obj-model src="#pedestal" position="0.447 0.970 -4.323" scale="0.015 0.015 0.013" rotation="-90 0 0" material="shader:flat;src:#pedestalText"></a-obj-model>
+      <!-- Models -->
+      <a-obj-model src="#pedestal" mtl="#pedestal-mtl" position="0.447 0.970 -4.323" scale="0.015 0.015 0.013" rotation="-90 0 0" material="shader:flat;src:#pedestalText"></a-obj-model>
+      <a-obj-model src="#doro" mtl="#doro-mtl" position="0 1 -4" scale="1.2 1.2 1.2" rotation="90 0 0"></a-obj-model>
+
     </a-scene>
   </body>
 </html>
