@@ -3,6 +3,7 @@
   <head>
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"> </script>
   </head>
+
   <body>
     <a-assets>
       <!-- Sky -->
@@ -18,6 +19,10 @@
       <!-- Doro Asset -->
       <a-asset-item id="doro" src="assets/doro/doro.obj"></a-asset-item>
       <a-asset-item id="doro-mtl" src="assets/doro/doro.mtl"></a-asset-item>
+
+      <!-- Cat Asset -->
+      <a-asset-item id="cat" src="assets/cat/oiiaioooooiai_cat.obj"></a-asset-item>
+      <a-asset-item id="cat-mtl" src="assets/cat/oiiaioooooiai_cat.mtl"></a-asset-item>
     </a-assets>
 
     <a-scene>
@@ -32,6 +37,9 @@
       <a-obj-model src="#doro" mtl="#doro-mtl" position="0 0.003 -8.843" scale="1.5 1.5 1.5" rotation="90 0 0" class="clickable" animation="property:rotation;to:90 360 0;dur:3000;startEvents:click"></a-obj-model>
       <a-obj-model src="#doro" mtl="#doro-mtl" position="3.769 0.003 -4.850" scale="1.5 1.5 1.5" rotation="90 -65 0" class="clickable" animation="property:rotation;to:90 -425 0;dur:3000;startEvents:click"></a-obj-model>
       
+      <!-- Cat Model -->
+      <a-obj-model src="#cat" mtl="#cat-mtl" position="0 1.056 -4.624" scale="4.75 4.75 4.75" rotation="0 20 0"></a-obj-model>
+
       <!-- Camera Cursor -->
       <a-camera>
         <a-cursor color="white"></a-cursor>
