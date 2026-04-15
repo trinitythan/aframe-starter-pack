@@ -11,7 +11,7 @@
       
       <!-- Pedestal Assets -->
       <a-asset-item id="pedestal" src="assets/pedestal/pedestal.obj"></a-asset-item>
-      <a-asset-item id="pedestal-mtl" src="assets/pedestal/model.mtl"></a-asset-item>
+      <!-- <a-asset-item id="pedestal-mtl" src="assets/pedestal/model.mtl"></a-asset-item> -->
 
       <!-- Stone Floor -->
       <img id="stoneFloor" src="assets/stoneFloor.png">
@@ -23,6 +23,11 @@
       <!-- Cat Asset -->
       <a-asset-item id="cat" src="assets/cat/oiiaioooooiai_cat.obj"></a-asset-item>
       <a-asset-item id="cat-mtl" src="assets/cat/oiiaioooooiai_cat.mtl"></a-asset-item>
+
+      <!-- Archway Asset -->
+      <a-asset-item id="archway" src="assets/archway/free_ultra-low_poly_snowy_stone_arch.obj"></a-asset-item>
+      <a-asset-item id="archway-mtl" src="assets/archway/free_ultra-low_poly_snowy_stone_arch.mtl"></a-asset-item>
+
     </a-assets>
 
     <a-scene>
@@ -39,6 +44,13 @@
       
       <!-- Cat Model -->
       <a-obj-model src="#cat" mtl="#cat-mtl" position="0 1.056 -4.624" scale="4.75 4.75 4.75" rotation="0 20 0"></a-obj-model>
+
+      <!-- Archway Model -->
+      <a-obj-model src="#archway" mtl="#archway-mtl" position="0 3.495 4.571" scale="6 6 6" rotation="0 0 0"></a-obj-model>
+      <a-obj-model src="#archway" mtl="#archway-mtl" position="0 3.495 -12.56" scale="6 6 6" rotation="0 0 0"></a-obj-model>
+
+      <a-obj-model src="#archway" mtl="#archway-mtl" position="8.621 3.495 -4.665" scale="6 6 6" rotation="0 90 0"></a-obj-model>
+      <a-obj-model src="#archway" mtl="#archway-mtl" position="-8.395 3.495 -4.665" scale="6 6 6" rotation="0 -90 0"></a-obj-model>
 
       <!-- Camera Cursor -->
       <a-camera>

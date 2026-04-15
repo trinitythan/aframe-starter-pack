@@ -1,3 +1,7 @@
+
+
+
+Citations
 Equirectangular Sky Original: 
 https://www.vecteezy.com/photo/40564155-seamless-blue-sky-hdri-360-panorama-view-flock-of-birds-in-clouds-as-skydome-for-edit-drone-shot-or-sky-replacement
 
@@ -13,3 +17,6 @@ https://opengameart.org/content/stone-floor-floordeffusepng
 
 Doro Model:
 https://sketchfab.com/3d-models/doro-9ee7bdcbe953439c8f5438e5197810a7
+
+Archway Model:
+https://sketchfab.com/3d-models/free-ultra-low-poly-snowy-stone-arch-f10daca568064170937481d6022175e4
