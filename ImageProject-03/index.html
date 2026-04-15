@@ -28,6 +28,10 @@
       <a-asset-item id="archway" src="assets/archway/free_ultra-low_poly_snowy_stone_arch.obj"></a-asset-item>
       <a-asset-item id="archway-mtl" src="assets/archway/free_ultra-low_poly_snowy_stone_arch.mtl"></a-asset-item>
 
+      <!-- Waterfall Asset -->
+      <a-asset-item id="waterfall" src="assets/waterfalls/artificial_stone_waterfall.obj"></a-asset-item>
+      <a-asset-item id="waterfall-mtl" src="assets/waterfalls/artificial_stone_waterfall.mtl"></a-asset-item>
+
     </a-assets>
 
     <a-scene>
@@ -51,6 +55,12 @@
 
       <a-obj-model src="#archway" mtl="#archway-mtl" position="8.621 3.495 -4.665" scale="6 6 6" rotation="0 90 0"></a-obj-model>
       <a-obj-model src="#archway" mtl="#archway-mtl" position="-8.395 3.495 -4.665" scale="6 6 6" rotation="0 -90 0"></a-obj-model>
+
+      <!-- Waterfall Model -->
+      <a-obj-model src="#waterfall" mtl="#waterfall-mtl" position="-5.936 1.927 -10.59" scale="0.016 0.016 0.012" rotation="0 45 0"></a-obj-model>
+      <a-obj-model src="#waterfall" mtl="#waterfall-mtl" position="5.936 1.927 -10.59" scale="0.016 0.016 0.012" rotation="0 -45 0"></a-obj-model>
+
+
 
       <!-- Camera Cursor -->
       <a-camera>
