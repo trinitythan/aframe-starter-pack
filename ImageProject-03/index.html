@@ -55,7 +55,10 @@
       <a-obj-model src="#doro" mtl="#doro-mtl" position="3.769 0.003 -4.850" scale="1.5 1.5 1.5" rotation="90 -65 0" class="clickable" animation="property:rotation;to:90 -425 0;dur:3000;startEvents:click"></a-obj-model>
       
       <!-- Cat Model -->
-      <a-obj-model src="#cat" mtl="#cat-mtl" position="0 1.056 -4.624" scale="4.75 4.75 4.75" rotation="0 20 0"></a-obj-model>
+      <a-obj-model src="#cat" mtl="#cat-mtl" position="0 1.056 -4.624" scale="4.75 4.75 4.75" rotation="0 20 0"
+        animation__spin="property:rotation;to:0 380 0;dur:5000;loop:true;easing:linear"
+        animation__float="property: position; dir: alternate; dur:2000; loop: true; easing:easeInOutSine; to: 0 1.5 -4.624">
+      </a-obj-model>
 
       <!-- Archway Model -->
       <a-obj-model src="#archway" mtl="#archway-mtl" position="0 3.495 4.571" scale="6 6 6" rotation="0 0 0"></a-obj-model>
@@ -78,7 +81,7 @@
 
       <!-- Camera Cursor -->
       <a-camera>
-        <a-cursor color="white"></a-cursor>
+        <a-cursor color="white" scale="0.35 0.35"></a-cursor>
       </a-camera>
 
     </a-scene>
