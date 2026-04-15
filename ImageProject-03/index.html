@@ -6,19 +6,38 @@
 
   <!-- Spin Controller -->
   <script>
+    let doroCount = 0;
+    let totalDoros = 3;
+    let activated = false;
+
     AFRAME.registerComponent('doro-spin', {
       init: function () {
         this.isSpinning = false;
+        this.hasBeenClicked = false;
+
+        // Saving the original postions of the doro and cat
+        let pos = this.el.getAttribute('position');
+        this.originalPosition = { x: pos.x, y: pos.y, z: pos.z };
+        let rot = this.el.getAttribute('rotation');
+        this.originalRotation = { x: rot.x, y: rot.y, z: rot.z };
 
         this.el.addEventListener('click', () => {
-          if (this.isSpinning) return; // ignore clicks during spin
+          if (this.isSpinning) return;
+
           this.isSpinning = true;
           let startRotation = this.el.getAttribute('rotation');
 
-          // Playing dancing osund
+          // play normal sound
           this.el.emit('doroSpin');
 
-          // Actual spinning of the doro
+          // only counts when each different doro has been clicked once
+          if (!this.hasBeenClicked) {
+            this.hasBeenClicked = true;
+            doroCount++;
+          }
+
+          // spin animation
+          this.el.removeAttribute('animation'); 
           this.el.setAttribute('animation', {
             property: 'rotation',
             to: `90 ${startRotation.y + 360} 0`,
@@ -26,13 +45,127 @@
             easing: 'linear'
           });
 
-          // Stops the player from spinning the doro until after the animation completes
+          // checking if each doro has been clicked
           setTimeout(() => {
-            this.isSpinning = false;
+          this.isSpinning = false;
+
+          // Triggers animation only after doro finishes spinning
+            if (doroCount === totalDoros && !activated) {
+              activated = true;
+              triggerFinalEvent();
+            }
           }, 2000);
+
+
         });
       }
     });
+
+    // Dancing Event Funciton
+    function triggerFinalEvent() {
+      console.log("ALL DOROS ACTIVATED");
+
+      // play sound
+      document.querySelector('#danceSoundPlayer').components.sound.playSound();
+
+      // making the light change colos 
+      let cone = document.querySelector('#lightCone');
+        cone.setAttribute('animation__color', {
+          property: 'material.color',
+          to: '#ff00a2',
+          dur: 500,
+          dir: 'alternate',
+          loop: true
+      });
+
+      let doros = document.querySelectorAll('[doro-spin]');
+
+      doros.forEach(doro => {
+        // resets position first
+        let pos = doro.object3D.position;
+        doro.setAttribute('position', {
+          x: pos.x,
+          y: pos.y,
+          z: pos.z
+        });
+
+        doro.setAttribute('animation__bounce', {
+          property: 'position',
+          dir: 'alternate',
+          dur: 2000,
+          loop: true,
+          easing: 'easeInOutSine',
+          to: `${pos.x} ${pos.y + 1} ${pos.z}`
+        });
+      });
+
+      // cat reset
+      let cat = document.querySelector('#catModel');
+
+      cat.setAttribute('animation__float', {
+        property: 'position',
+        dir: 'alternate',
+        dur: 2000,
+        loop: true,
+        easing: 'easeInOutSine',
+        to: '0 2 -4.624'
+      });
+      setTimeout(resetScene, 8000);
+    }
+
+    function resetScene() {
+      let doros = document.querySelectorAll('[doro-spin]');
+
+      doros.forEach(doro => {
+        // resets light
+        let cone = document.querySelector('#lightCone');
+        cone.removeAttribute('animation__color');
+        cone.setAttribute('material', 'color', '#fffdc9');
+
+        let comp = doro.components['doro-spin'];
+        doro.removeAttribute('animation');
+
+        // stopping dance animation
+        doro.removeAttribute('animation__bounce');
+
+        // reset position
+        doro.setAttribute('position', comp.originalPosition);
+
+        // reset rotation
+        doro.setAttribute('rotation', comp.originalRotation);
+
+        comp.hasBeenClicked = false;
+        comp.isSpinning = false;
+      });
+
+      let cat = document.querySelector('#catModel');
+
+      // remove dance animation
+      cat.removeAttribute('animation__float');
+
+      // original float
+      cat.setAttribute('animation__float', {
+        property: 'position',
+        dir: 'alternate',
+        dur: 2000,
+        loop: true,
+        easing: 'easeInOutSine',
+        to: '0 1.5 -4.624'
+      });
+
+      // original spin
+      cat.setAttribute('animation__spin', {
+        property: 'rotation',
+        to: '0 380 0',
+        dur: 5000,
+        loop: true,
+        easing: 'linear'
+      });
+
+      // reset sync dance
+      doroCount = 0;
+      activated = false;
+    }
 </script>
 
   <body>
@@ -55,7 +188,7 @@
       <audio id="slowOoEeAh" src="assets/dancingSounds/slow OO EE AH.mp3" volume="10"></audio>
 
       <!-- Cat Asset -->
-      <a-asset-item id="cat" src="assets/cat/oiiaioooooiai_cat.obj"></a-asset-item>
+      <a-asset-item id="catModel" src="assets/cat/oiiaioooooiai_cat.obj"></a-asset-item>
       <a-asset-item id="cat-mtl" src="assets/cat/oiiaioooooiai_cat.mtl"></a-asset-item>
 
       <!-- Archway Asset -->
@@ -71,8 +204,10 @@
        <a-asset-item id="trees-mtl" src="assets/trees/rocks_and_trees.mtl"></a-asset-item>
 
       <!-- Background sound -->
-      <audio id="backgroundSound" src="assets/backgroundSound.mp3" autoplay loop></audio>
-    </a-assets>
+      <audio id="backgroundSound" src="assets/backgroundSound.mp3" volume="0.3" autoplay loop></audio>
+
+      <!-- Dancing Sound -->
+      <audio id="danceSoundFile" src="assets/dancingSounds/oo ee ahh .mp3"></audio>    </a-assets>
 
     <a-scene>      
       <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" src="#stoneFloor"></a-plane>
@@ -91,13 +226,13 @@
       <a-obj-model src="#doro" mtl="#doro-mtl" position="3.769 0.003 -4.850" scale="1.5 1.5 1.5" rotation="90 -65 0" doro-spin sound="src: #slowOoEeAh; on: doroSpin"></a-obj-model>
       
       <!-- Cat Model -->
-      <a-obj-model src="#cat" mtl="#cat-mtl" position="0 1.056 -4.624" scale="4.75 4.75 4.75" rotation="0 20 0"
+      <a-obj-model src="#catModel" mtl="#cat-mtl" position="0 1.056 -4.624" scale="4.75 4.75 4.75" rotation="0 20 0"
         animation__spin="property:rotation;to:0 380 0;dur:5000;loop:true;easing:linear"
         animation__float="property: position; dir: alternate; dur:2000; loop: true; easing:easeInOutSine; to: 0 1.5 -4.624">
       </a-obj-model>
 
       <!-- Higher Being Light -->
-      <a-cone position="-6.15 25.817 -15.125" radius-bottom="2.15" radius-top="0.1" height="60" rotation="-6.610 -45.070 25" color="#fffdc9" opacity="0.15"></a-cone>
+      <a-cone id="lightCone" position="-6.15 25.817 -15.125" radius-bottom="2.15" radius-top="0.1" height="60" rotation="-6.610 -45.070 25" color="#fffdc9" opacity="0.15"></a-cone>
 
       <!-- Archway Model -->
       <a-obj-model src="#archway" mtl="#archway-mtl" position="0 3.495 4.571" scale="6 6 6" rotation="0 0 0"></a-obj-model>
@@ -117,6 +252,9 @@
       <a-obj-model src="#trees" mtl="#trees-mtl" position="-13.140 9.157 -13.140" scale="34.380 50 43.670" rotation="0 28.880 0"></a-obj-model>
       <a-obj-model src="#trees" mtl="#trees-mtl" position="10.7 9.157 -9.152" scale="34.380 50 43.670" rotation="0 270 0"></a-obj-model>
       <a-obj-model src="#trees" mtl="#trees-mtl" position="-2.230 9.157 7.542" scale="33.790 49.880 36.140" rotation="0 146.94 0"></a-obj-model>
+
+      <!-- Dancing Sound Effect -->
+      <a-entity id="danceSoundPlayer" sound="src: #danceSoundFile"></a-entity>
 
       <!-- Camera Cursor -->
       <a-camera>
